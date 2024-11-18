@@ -45,7 +45,11 @@ if (int.TryParse(Console.ReadLine(), out int number))
         if (attacker.IsDead) heroes.Remove(attacker);
         if (defender.IsDead) heroes.Remove(defender);
 
-        heroes.ForEach(hero => hero.Healing());
+        foreach (Hero hero in heroes)
+        {
+            if (hero == attacker || hero == defender) continue;
+            hero.Healing();
+        };
 
         Console.WriteLine($"{round}. kör");
         Console.WriteLine($"támadó: {attacker.Name}");
